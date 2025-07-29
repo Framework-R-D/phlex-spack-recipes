@@ -31,7 +31,6 @@ class Phlex(CMakePackage, FnalGithubPackage):
     depends_on("jsonnet")
     depends_on("spdlog")
     depends_on("tbb")
-    depends_on("libbacktrace +shared")
     depends_on("catch2", type=("build", "test"))
 
     with when("+form"):
