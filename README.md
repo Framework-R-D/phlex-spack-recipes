@@ -1,29 +1,36 @@
 # phlex-spack-recipes
 Repository for Spack recipes for Phlex, and its related packages and dependencies.
 
-To install phlex using [spack](https://spack.io/) on a new system, first install spack itself then add the [FNAL art spack repo](https://github.com/FNALssi/fnal_art), which is used in the phlex recipe. Add this repo. Create and activate a spack environment, then add phlex and install it. Skip steps as appropriate, e.g. if you already have spack installed.
+To install phlex using [spack](https://spack.io/) on a new system:
 
-For example, assuming bash (see [spack documentation](https://spack-tutorial.readthedocs.io/en/latest/index.html) for other shells), to install spack and add the necessary repos:
+1. install spack itself
+2. add the [FNAL art spack repo](https://github.com/FNALssi/fnal_art), which is used in the `phlex` recipe
+3. add this repo
+4. create and activate a spack environment
+5. add phlex and install it.
 
-```
+Skip steps as appropriate, e.g. if you already have spack installed.
+
+### Example
+
+Assuming bash (see [spack documentation](https://spack-tutorial.readthedocs.io/en/latest/index.html) for other shells), to install spack and add the necessary repos:
+
+```console
 $ git clone --depth=2 https://github.com/spack/spack.git
 $ . spack/share/spack/setup-env.sh
-$ git clone https://github.com/FNALssi/fnal_art.git
-$ spack repo add ./fnal_art/spack_repo/fnal_art
-$ git clone https://github.com/Framework-R-D/phlex-spack-recipes.git
-$ spack repo add ./phlex-spack-recipes/spack_repo/phlex/
+$ spack repo add https://github.com/FNALssi/fnal_art.git
+$ spack repo add https://github.com/Framework-R-D/phlex-spack-recipes.git
 ```
 
-Create an environment, after adding the repos:
+Create and activate an environment, after adding the repos:
 
-```
-$ spack env create PHLEXDEV
-$ spack env activate PHLEXDEV
+```console
+$ spack env activate --create PHLEXDEV
 ```
 
-Finally, add and install phlex in the spack environment:
+Finally, within the active environment, add and install `phlex` in the spack environment:
 
-```
-$ spack -e PHLEXDEV add phlex@develop
-$ spack install phlex
+```console
+$ spack add phlex@develop
+$ spack install -j<N>
 ```
