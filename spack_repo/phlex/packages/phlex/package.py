@@ -33,6 +33,9 @@ class Phlex(CMakePackage, FnalGithubPackage):
     depends_on("tbb")
     depends_on("catch2", type=("build", "test"))
 
+    depends_on("python@3.11:")
+    depends_on("py-numpy@2:")
+
     with when("+form"):
         depends_on("root +root7")
 
