@@ -22,7 +22,7 @@ class Phlex(CMakePackage, FnalGithubPackage):
 
     cxxstd_variant("20", "23", default="20", sticky=True)
 
-    variant("form", default=False, description="Build with experimental FORM integration")
+    variant("form", default=True, description="Build with experimental FORM integration")
 
     depends_on("cxx", type="build")
 
@@ -37,9 +37,11 @@ class Phlex(CMakePackage, FnalGithubPackage):
     depends_on("py-numpy@2:")
 
     with when("+form"):
-        depends_on("root +root7")
+        for std in (20, 23):
+            depends_on(f"root +root7 cxxstd={std}", when=f"cxxstd={std}")
 
 
+    @cmake_preset
     def cmake_args(self):
         define = self.define
         define_from_variant = self.define_from_variant
