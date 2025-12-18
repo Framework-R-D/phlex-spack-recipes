@@ -43,9 +43,10 @@ class Phlex(CMakePackage, FnalGithubPackage):
 
     @cmake_preset
     def cmake_args(self):
-        define = self.define
-        define_from_variant = self.define_from_variant
         return [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),
             self.define_from_variant("PHLEX_USE_FORM", "form")
         ]
+
+    def setup_run_environment(self, env):
+        env.prepend_path("PHLEX_PLUGIN_PATH", self.prefix.lib)
