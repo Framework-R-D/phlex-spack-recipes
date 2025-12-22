@@ -11,14 +11,18 @@ from spack_repo.fnal_art.packages.fnal_github_package.package import *
 class Phlex(CMakePackage, FnalGithubPackage):
     """Parallel, hierarchical, and layered execution of data-processing algorithms"""
 
-    git = "https://github.com/framework-r-d/phlex.git"
-    version_patterns = []
+    git = "https://github.com/framework-r-d/phlex"
+    version_patterns = ["v0.1.0"]
 
     maintainers("knoepfel")
 
     license("Apache-2.0")
 
+    # Development version
     version("develop", branch="main", get_full_repo=True)
+
+    # Released versions
+    version("0.1.0", sha256="b525540e7526f9cefe8537b06640917ece70f771af3270e6bb0aa2722d23d915")
 
     cxxstd_variant("20", "23", default="20", sticky=True)
 
