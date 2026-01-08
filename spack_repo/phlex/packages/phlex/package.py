@@ -30,14 +30,14 @@ class Phlex(CMakePackage, FnalGithubPackage):
 
     depends_on("cxx", type="build")
 
-    depends_on("boost@1.75.0: +json+program_options+stacktrace")
+    depends_on("boost@1.75.0: +json+program_options")
     depends_on("fmt@:9")
     depends_on("jsonnet")
     depends_on("spdlog")
     depends_on("tbb")
     depends_on("catch2", type=("build", "test"))
 
-    depends_on("python@3.11:")
+    depends_on("python@3.12:")
     depends_on("py-numpy@2:")
     depends_on("py-packaging", type="build") # Used to check (e.g.) numpy veresions in CMake
 
