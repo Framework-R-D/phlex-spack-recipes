@@ -3,9 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
+
+from spack.package import *
 
 
 class Phlex(CMakePackage, FnalGithubPackage):
@@ -39,18 +40,17 @@ class Phlex(CMakePackage, FnalGithubPackage):
 
     depends_on("python@3.12:")
     depends_on("py-numpy@2:")
-    depends_on("py-packaging", type="build") # Used to check (e.g.) numpy versions in CMake
+    depends_on("py-packaging", type="build")  # Used to check (e.g.) numpy versions in CMake
 
     with when("+form"):
         for std in (20, 23):
             depends_on(f"root +root7 cxxstd={std}", when=f"cxxstd={std}")
 
-
     @cmake_preset
     def cmake_args(self):
         return [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),
-            self.define_from_variant("PHLEX_USE_FORM", "form")
+            self.define_from_variant("PHLEX_USE_FORM", "form"),
         ]
 
     def setup_run_environment(self, env):
