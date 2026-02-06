@@ -25,7 +25,13 @@ class Phlex(CMakePackage, FnalGithubPackage):
     # Released versions
     version("0.1.0", sha256="b525540e7526f9cefe8537b06640917ece70f771af3270e6bb0aa2722d23d915")
 
-    cxxstd_variant("20", "23", default="20", sticky=True)
+    variant(
+        "cxxstd",
+        default="23",
+        values=(conditional("20", when="@0.1.0"), conditional("23", when="@0.2.0:")),
+        multi=False,
+        description="Use the specified C++ standard when building.",
+    )
 
     variant("form", default=True, description="Build with experimental FORM integration")
 
