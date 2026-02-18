@@ -3,9 +3,10 @@
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
 
-from spack.package import *
 from spack_repo.builtin.build_systems.cmake import CMakePackage
 from spack_repo.fnal_art.packages.fnal_github_package.package import *
+
+from spack.package import *
 
 
 class Phlex(CMakePackage, FnalGithubPackage):
@@ -24,7 +25,13 @@ class Phlex(CMakePackage, FnalGithubPackage):
     # Released versions
     version("0.1.0", sha256="b525540e7526f9cefe8537b06640917ece70f771af3270e6bb0aa2722d23d915")
 
-    cxxstd_variant("20", "23", default="20", sticky=True)
+    variant(
+        "cxxstd",
+        default="23",
+        values=(conditional("20", when="@0.1.0"), conditional("23", when="@0.2.0:")),
+        multi=False,
+        description="Use the specified C++ standard when building.",
+    )
 
     variant("form", default=True, description="Build with experimental FORM integration")
 
@@ -39,18 +46,17 @@ class Phlex(CMakePackage, FnalGithubPackage):
 
     depends_on("python@3.12:")
     depends_on("py-numpy@2:")
-    depends_on("py-packaging", type="build") # Used to check (e.g.) numpy versions in CMake
+    depends_on("py-packaging", type="build")  # Used to check (e.g.) numpy versions in CMake
 
     with when("+form"):
         for std in (20, 23):
             depends_on(f"root +root7 cxxstd={std}", when=f"cxxstd={std}")
 
-
     @cmake_preset
     def cmake_args(self):
         return [
             self.define_from_variant("CMAKE_CXX_STANDARD", "cxxstd"),
-            self.define_from_variant("PHLEX_USE_FORM", "form")
+            self.define_from_variant("PHLEX_USE_FORM", "form"),
         ]
 
     def setup_run_environment(self, env):
