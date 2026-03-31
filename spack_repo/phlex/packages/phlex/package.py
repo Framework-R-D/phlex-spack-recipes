@@ -23,6 +23,7 @@ class Phlex(CMakePackage, FnalGithubPackage):
     version("develop", branch="main", get_full_repo=True)
 
     # Released versions
+    version("0.2.0", sha256="37833e1b976ec534d8da5b9ec412f297426e2e534ae8e471124f6a1859fe9841")
     version("0.1.0", sha256="b525540e7526f9cefe8537b06640917ece70f771af3270e6bb0aa2722d23d915")
 
     variant(
@@ -47,6 +48,7 @@ class Phlex(CMakePackage, FnalGithubPackage):
     depends_on("python@3.12:")
     depends_on("py-numpy@2:")
     depends_on("py-packaging", type="build")  # Used to check (e.g.) numpy versions in CMake
+    depends_on("py-pytest", type="build")
 
     with when("+form"):
         for std in (20, 23):
