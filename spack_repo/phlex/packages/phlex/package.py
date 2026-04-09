@@ -36,6 +36,7 @@ class Phlex(CMakePackage, FnalGithubPackage):
 
     variant("form", default=True, description="Build with experimental FORM integration")
 
+    depends_on("cmake@3.31:", type="build")
     depends_on("cxx", type="build")
 
     depends_on("boost@1.88.0: +json+program_options")
