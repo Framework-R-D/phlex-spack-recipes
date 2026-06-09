@@ -46,11 +46,15 @@ class Phlex(CMakePackage, FnalGithubPackage):
     depends_on("tbb")
     depends_on("catch2", type=("build", "test"))
 
+    # Python dependencies
     depends_on("python@3.12:")
     depends_on("py-numpy@2:")
     depends_on("py-packaging", type="build")  # Used to check (e.g.) numpy versions in CMake
     depends_on("py-pytest", type="build")
     depends_on("py-pyyaml", type="build")  # Used in scripts testing
+    with when("@0.3:"):
+        depends_on("py-numba")
+        depends_on("libffi")  # Used in combination with numba
 
     with when("+form"):
         for std in (20, 23):
