@@ -54,7 +54,7 @@ class Phlex(CMakePackage, FnalGithubPackage):
     depends_on("py-pytest", type="build")
     depends_on("py-pyyaml", type="build")  # Used in scripts testing
     with when("@0.3:"):
-        depends_on("pkg-config", type="build")
+        depends_on("pkgconf", type="build")
         depends_on("py-numba")
         depends_on("libffi")  # Used in combination with numba
 
