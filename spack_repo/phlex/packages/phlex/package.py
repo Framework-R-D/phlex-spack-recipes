@@ -43,6 +43,7 @@ class Phlex(CMakePackage, FnalGithubPackage):
     depends_on("cxx", type="build")
 
     depends_on("boost@1.88.0: +json+program_options")
+    depends_on("cppgsl", when="@0.4:")
     depends_on("fmt@11.2:")
     depends_on("jsonnet")
     depends_on("spdlog")
