@@ -15,6 +15,7 @@ from spack.package import *
 try:
     import_module("spack_repo.builtin.packages.ms_gsl.package")
 except ModuleNotFoundError as exc:
+    # Distinguish "not present" from "failed to load"
     if exc.name not in {
         "spack_repo.builtin.packages.ms_gsl",
         "spack_repo.builtin.packages.ms_gsl.package",
