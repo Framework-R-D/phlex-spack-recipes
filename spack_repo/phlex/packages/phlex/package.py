@@ -43,15 +43,13 @@ class Phlex(CMakePackage, FnalGithubPackage):
     version("0.4.3", sha256="2dd95ed463971221c3f8d58893729ebdcd79d1da12d891038237b0eab872a864")
     version("0.4.2", sha256="117fa5cf2d9cb1cdd43c157f5961758e3e4fec60951b637743dcdfd6a3e1a393")
     version("0.4.1", sha256="0067d84f3c132a63f5c5a447efac706ae3b79e841733024ea51e7428fd9dd670")
-    version("0.4.0", sha256="4b30a5eb82127087df84010fe80227a4357d893c6c35aadec4c87a817303552b")
+    # 0.4.0 does not build correctly; use 0.4.1 or newer
+    version("0.4.0", sha256="4b30a5eb82127087df84010fe80227a4357d893c6c35aadec4c87a817303552b", deprecated=True)
     version("0.3.2", sha256="0b10cd4ab6c43019fb2c216014f4666bc643647a06a464815a2a5c6f1536ce89")
     version("0.3.1", sha256="1689fced4229b82be54269b2e785ad75f65869dbbbe0275194620294bc9b9095")
     version("0.3.0", sha256="2219a7f504873563b8befd85afd5ddc2a8a3b1ffe8e61caf219cdc4609271408")
     version("0.2.0", sha256="37833e1b976ec534d8da5b9ec412f297426e2e534ae8e471124f6a1859fe9841")
     version("0.1.0", sha256="b525540e7526f9cefe8537b06640917ece70f771af3270e6bb0aa2722d23d915")
-
-    # Deprecated versions
-    deprecated("@0.4.0", reason="retired", severity="high", msg="0.4.0 does not build correctly; use 0.4.1 or newer")
 
     variant(
         "cxxstd",
