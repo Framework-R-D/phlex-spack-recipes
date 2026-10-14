@@ -85,7 +85,7 @@ class Phlex(CMakePackage, FnalGithubPackage):
         requires("^[virtuals=tbb] intel-tbb@2023:", when="platform=Darwin")
 
 
-    depends_on("catch2@3.9:+threadsafe", type=("build", "test"))
+    depends_on("catch2", type=("build", "test"))
 
     # Python dependencies
     depends_on("python@3.12:")
