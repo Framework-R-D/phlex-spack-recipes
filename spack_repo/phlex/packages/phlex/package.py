@@ -80,6 +80,9 @@ class Phlex(CMakePackage, FnalGithubPackage):
         with when(phlex_versions):
             requires(f"^[virtuals=tbb] intel-tbb{tbb_versions}")
 
+    # TCM uses GNU linker options that Apple's linker does not support.
+    requires("^intel-tbb~tcm", when="platform=darwin ^intel-tbb@2023.2.0:")
+
     depends_on("catch2", type=("build", "test"))
 
     # Python dependencies
